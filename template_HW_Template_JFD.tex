@@ -1,0 +1,258 @@
+% dooley did this
+%
+\documentclass[11pt]{article}
+\usepackage[top =0.8in, left = 0.8in, bottom=0.8in, right=0.8in]{geometry}
+%%fakesection Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\providecommand{\SIN}[1]{\ensuremath{\sin{\left(#1\right)}}}
+\providecommand{\COS}[1]{\ensuremath{\cos{\left(#1\right)}}}
+\providecommand{\TAN}[1]{\ensuremath{\tan{\left(#1\right)}}}
+\providecommand{\CSC}[1]{\ensuremath{\csc{\left(#1\right)}}}
+\providecommand{\COT}[1]{\ensuremath{\cot{\left(#1\right)}}}
+\providecommand{\SEC}[1]{\ensuremath{\sec{\left(#1\right)}}}
+\providecommand{\SINH}[1]{\ensuremath{\sinh{\left(#1\right)}}}
+\providecommand{\COSH}[1]{\ensuremath{\cosh{\left(#1\right)}}}
+\providecommand{\TANH}[1]{\ensuremath{\tan{\left(#1\right)}}}
+\providecommand{\ARCSIN}[1]{\ensuremath{\arcsin{\left(#1\right)}}}
+\providecommand{\ARCCOS}[1]{\ensuremath{\arccos{\left(#1\right)}}}
+\providecommand{\ARCTAN}[1]{\ensuremath{\arctan{\left(#1\right)}}}
+\providecommand{\TT}[1]{\,\ensuremath{\left[\text{#1}\right]}}
+\providecommand{\U}[1]{\ensuremath{\text{#1}}}
+\providecommand{\LN}[1]{\ensuremath{\ln{\left(#1\right)} }}
+\newcommand*{\UUA}[1]{\underset{\uparrow}{#1}}
+\providecommand{\EXP}[1]{\ensuremath{\text{exp}\left[ #1\right]}}
+
+\newcommand{\GOTO}{\hspace{0.1in} \rightarrow \hspace{0.1in}}
+\newcommand{\LIMS}{\biggr\rvert}
+\newcommand{\comma}{\text{,} \hspace{0.2in} }
+\newcommand{\NON}{\nonumber\\\nonumber\\}
+\newcommand{\NUM}{\\\nonumber\\}
+\newcommand{\eps}{\epsilon_{0}}
+\newcommand{\Lagr}{\mathcal{L}}
+\newcommand{\EMF}{\mathcal{E}}
+\newcommand{\Ham}{\mathcal{H}}
+\newcommand{\PT}{\partial}
+\newcommand{\Therefore}{\therefore \hspace{.1in}}
+\newcommand{\quotes}[1]{``#1''}  %%% \quotes{}
+\newcommand{\str}[1]{`#1'}  %%% \str{}
+
+\newcommand{\BT}{\begin{center}\begin{tabular}}
+\newcommand{\ET}{\end{tabular}\end{center}}
+\newcommand{\BM}{\begin{bmatrix}}
+\newcommand{\EM}{\end{bmatrix}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%fakesection Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\usepackage{helvet}
+\usepackage{amsmath,amssymb, bm, lipsum, braket, mathtools}
+\usepackage{wrapfig, graphicx,subfig}
+\usepackage[usenames,dvipsnames,table]{xcolor}
+\usepackage[font=footnotesize]{caption}	
+% Size options: scriptsize, footnotesize, small, normalsize, large, Large, huge, Huge
+
+\usepackage{pdfpages}
+\usepackage[makeroom]{cancel}	%allows canceling
+
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\si}{si}
+															    
+\allowdisplaybreaks[1]	% allows page breaks in align/gather blocks
+						% Switch from 1 to 4 for aggressive page breaks	
+
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks=true,
+	linkcolor=black,
+	filecolor=black,      
+	urlcolor=blue,
+	linktocpage=true,
+	citecolor=black,
+	}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%fakesection Listings Setup
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{listings}
+\lstset{%language=Matlab,%
+	basicstyle=\tt\scriptsize,
+	breaklines=true,%
+	%morekeywords={matlab2tikz},
+	keywordstyle=\color{black},%
+	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	numbers=left,%
+	numberstyle={\tiny \color{red}},% size of the numbers
+	numbersep=9pt, % this defines how far the numbers are from the text
+	frame = single,
+	mathescape=false,
+}
+
+%
+\providecommand{\codeline}[1]{{\scriptsize\color{red}#1}}
+\newcommand{\Hilight}{\makebox[0pt][l]{\color{yellow}\rule[-1pt]{1\linewidth}{5.5pt}}}
+\newcommand{\EMPH}{\makebox[0pt][l]{\color{pink}\rule[-1pt]{1\linewidth}{5.5pt}}}
+
+%%fakesubsection ASSEMBLY 
+\lstdefinestyle{ASSEMBLY}{%
+	language={[x86masm]Assembler},%
+	basicstyle=\tt\tiny,%
+	emph=[1]{LDI, ADD, ADC, CLR, SEC,MUL,MULS,MULSU, OUT,
+		.global,.section,.text, .org,rjmp,.equ,.include,.nolist,.list,
+		asr, lpm, lds, rcall, sts,mov, push,pop,sub,RET,brne,dec,.byte,
+		inc,.ascii,call, cpi, breq,jmp,andi,in, or, cbi, sbi,swap, 
+		nop, sbrs},
+	emphstyle=[1]\color{blue}, %some words to emphasise 
+	escapechar=@,
+}
+\newcommand{\ASSEMBLY}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
+
+%%fakesubsection C
+\lstdefinestyle{C}{%
+	language=C,%
+	basicstyle=\tt\tiny,%
+	keywordstyle=\color{blue}\ttfamily,
+	emph=[1]{uint16\_t,uint8\_t},
+	emphstyle=[1]\color{blue}, %some words to emphasise 
+	emph=[2]{\_delay\_ms,\_delay\_us},	
+	emphstyle=[2]\color{red}, %some words to emphasise
+	escapechar=@, 
+}
+\newcommand{\C}[1]{\lstinline[style = C,basicstyle=\tt\scriptsize,]|#1|}
+
+%%fakesubsection MATLAB
+\lstdefinestyle{MATLAB}{%
+	language=Matlab,%
+	basicstyle=\tt\tiny,%
+	morekeywords={matlab2tikz},%
+	emph=[1]{for,end,break,if,elseif, else,function},%
+	emphstyle=[1]\color{blue}, %some words to emphasise  
+	emph=[2]{on, off},%
+	emphstyle=[2]\color{mylilas},%
+	escapechar=@,
+}
+\newcommand{\MATLAB}[1]{\lstinline[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
+
+%%fakesubsection PYTHON
+\lstdefinestyle{PYTHON}{%
+	language=Python,%
+	basicstyle=\tt\tiny,%
+	emph=[1]{import, from, as,},
+	emphstyle=[1]\color{blue}, %some words to emphasise 
+	escapechar=@,
+}
+\newcommand{\PYTHON}[1]{\lstinline[style = PYTHON,basicstyle=\tt\scriptsize,]|#1|}
+
+%%fakesubsection PYTHON
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\definecolor{ORG}{RGB}{255, 153, 51}
+\definecolor{Ablue}{RGB}{51, 204, 255}
+\definecolor{Agreen}{RGB}{51, 204, 51}
+
+\lstdefinestyle{ARDUINO}{%
+	keywords={;},% define keywords
+	basicstyle=\tt\tiny,
+	morecomment=[l]{//},%treat // as comments
+	morecomment=[s]{/*}{*/},% define /* ... */ comments
+	emph=[1]{HIGH, OUTPUT, LOW,int,void},% keywords to emphasize
+	emphstyle=[1]\color{Ablue},
+	emph=[2]{digitalWrite,delayMicroseconds,pinMode},% keywords to emphasize
+	emphstyle=[2]\color{ORG},
+	emph=[3]{setup,loop},% keywords to emphasize
+	emphstyle=[3]\color{Agreen},
+	escapechar=@,
+}
+\newcommand{\ARDUINO}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
+
+%%fakesubsection OTHER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{OTHER}{%
+	basicstyle=\tt\tiny,
+	escapechar=*,
+}
+\newcommand{\OTHER}[1]{\OTHER[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
+
+\usepackage{lastpage,fancyhdr}			% better looking header
+\pagestyle{fancy}						% FANCY LIKE ME!!!!
+\fancyhead{}							%clear all header fields
+\renewcommand{\headrulewidth}{0pt}		%no line in header area
+\fancyfoot{}							%clear all footer fields
+\fancyfoot[C]{\thepage \space of \pageref{LastPage}}		% page # of #
+\fancyfoot[R]{\smAuthor \space $\rvert$ \Class \space \# \HWNum}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document} 
+
+%%fakesection TITLE/HEADER
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand {\Class}{CLASS}
+\newcommand {\HWNum}{NUM}
+\newcommand {\Date} {DATE}
+%\newcommand {\Probs}{PROBS}             
+\newcommand {\Author}{Jonathan F. Dooley}
+\newcommand {\smAuthor} {JFDooley}
+
+\null\hfill\begin{tabular}{r@{}}
+	\text{\Author}\\
+	\text{\Class \space $\rvert$ \space \Date}\\
+	\text{New Mexico Tech}\\
+	\# \text{\HWNum}\\
+	%\text{\Probs}
+\end{tabular}
+
+
+\section*{\textsc{Problem 1:}}
+\setcounter{section}{1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
+				
+	}\end{minipage}}
+\end{center}
+
+\noindent
+
+
+
+\section*{\textsc{Problem 2:}}
+\setcounter{section}{2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
+				
+	}\end{minipage}}
+\end{center}
+
+\noindent
+
+
+
+\section*{\textsc{Problem 3:}}
+\setcounter{section}{3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{center}
+	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
+
+	}\end{minipage}}
+\end{center}
+
+
+\noindent
+
+%%%%%%%%%%%%%%%%%%%%%%%%  END DOC %%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
