@@ -1,11 +1,14 @@
 % dooley did this
 %
-\documentclass[11pt]{article}
+\documentclass[11pt,usenames,dvipsnames,table]{article}
 \usepackage[top =0.8in, left = 0.8in, bottom=0.8in, right=0.8in]{geometry}
 %%fakesection Commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+
 \providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+
+% trig/math commands w/ automatically adjusting parens
 \providecommand{\SIN}[1]{\ensuremath{\sin{\left(#1\right)}}}
 \providecommand{\COS}[1]{\ensuremath{\cos{\left(#1\right)}}}
 \providecommand{\TAN}[1]{\ensuremath{\tan{\left(#1\right)}}}
@@ -18,28 +21,42 @@
 \providecommand{\ARCSIN}[1]{\ensuremath{\arcsin{\left(#1\right)}}}
 \providecommand{\ARCCOS}[1]{\ensuremath{\arccos{\left(#1\right)}}}
 \providecommand{\ARCTAN}[1]{\ensuremath{\arctan{\left(#1\right)}}}
-\providecommand{\TT}[1]{\,\ensuremath{\left[\text{#1}\right]}}
-\providecommand{\U}[1]{\ensuremath{\text{#1}}}
 \providecommand{\LN}[1]{\ensuremath{\ln{\left(#1\right)} }}
-\newcommand*{\UUA}[1]{\underset{\uparrow}{#1}}
 \providecommand{\EXP}[1]{\ensuremath{\text{exp}\left[ #1\right]}}
 
-\newcommand{\GOTO}{\hspace{0.1in} \rightarrow \hspace{0.1in}}
+% add braketed unit (text env) in math env: $10\TT{V}$
+\providecommand{\TT}[1]{\,\ensuremath{\left[\text{#1}\right]}}
+% non-braketed test env in math env: $\U{SNR}$
+\providecommand{\U}[1]{\ensuremath{\text{#1}}}
+% up arrow under value. used as marker for sequences
+\newcommand*{\UUA}[1]{\underset{\uparrow}{#1}}
+%integral limits
 \newcommand{\LIMS}{\biggr\rvert}
+% \PT to create partial deriviative symbol
+\newcommand{\PT}{\partial}
+
+% commands to help with flow in math environment
+\newcommand{\GOTO}{\hspace{0.1in} \rightarrow \hspace{0.1in}}
 \newcommand{\comma}{\text{,} \hspace{0.2in} }
 \newcommand{\NON}{\nonumber\\\nonumber\\}
 \newcommand{\NUM}{\\\nonumber\\}
-\newcommand{\eps}{\epsilon_{0}}
-\newcommand{\Lagr}{\mathcal{L}}
-\newcommand{\EMF}{\mathcal{E}}
-\newcommand{\Ham}{\mathcal{H}}
-\newcommand{\PT}{\partial}
 \newcommand{\Therefore}{\therefore \hspace{.1in}}
+
+% single and double quotes with ease
 \newcommand{\quotes}[1]{``#1''}  %%% \quotes{}
 \newcommand{\str}[1]{`#1'}  %%% \str{}
 
+% Oft used symbols
+\newcommand{\eps}{\epsilon_{0}} % permitivity of free space
+\newcommand{\Lagr}{\mathcal{L}} % Lagrangian
+\newcommand{\Ham}{\mathcal{H}}  % Hamiltonian
+\newcommand{\EMF}{\mathcal{E}}  % EMF
+
+% begin centered table with ease
 \newcommand{\BT}{\begin{center}\begin{tabular}}
 \newcommand{\ET}{\end{tabular}\end{center}}
+
+% create matrix with less keystrokes (math env)
 \newcommand{\BM}{\begin{bmatrix}}
 \newcommand{\EM}{\end{bmatrix}}
 
@@ -49,33 +66,45 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %\usepackage{helvet}
-\usepackage{amsmath,amssymb, bm, lipsum, braket, mathtools}
+%\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb, bm, lipsum, braket, mathtools, pdfpages}
 \usepackage{wrapfig, graphicx,subfig}
-\usepackage[usenames,dvipsnames,table]{xcolor}
-\usepackage[font=footnotesize]{caption}	
+\usepackage{cancel}	% allows cancelling in math mode
+\usepackage[font=footnotesize]{caption}
 % Size options: scriptsize, footnotesize, small, normalsize, large, Large, huge, Huge
+\usepackage{xcolor}
 
-\usepackage{pdfpages}
-\usepackage[makeroom]{cancel}	%allows canceling
-
+% sinc and si ('trig-intagral'), use capitals for auto parens
 \DeclareMathOperator{\sinc}{sinc}
 \DeclareMathOperator{\si}{si}
-															    
-\allowdisplaybreaks[1]	% allows page breaks in align/gather blocks
-						% Switch from 1 to 4 for aggressive page breaks	
+\providecommand{\SINC}[1]{\ensuremath{\sinc{\left(#1\right)}}}
+\providecommand{\SI}[1]{\ensuremath{\si{\left(#1\right)}}}
 
+% allows page breaks in align/gather blocks
+\allowdisplaybreaks[1] % 1 to 4 for aggressive page breaks
+
+% colors for lstlistings.
 \definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
 \definecolor{mylilas}{RGB}{170,55,241}
 
+% hyperref for links to urls
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
-	filecolor=black,      
+	filecolor=black,
 	urlcolor=blue,
 	linktocpage=true,
 	citecolor=black,
 	}
+
+\usepackage{lastpage,fancyhdr} % better looking header
+\pagestyle{fancy}              % FANCY LIKE ME!!!!
+\fancyhead{}                   %clear all header fields
+\renewcommand{\headrulewidth}{0pt} %no line in header area
+\fancyfoot{}                   %clear all footer fields
+\fancyfoot[C]{\thepage \space of \pageref{LastPage}} % page # of #
+\fancyfoot[R]{\smAuthor \space $\rvert$ \Class \space \# \HWNum} % footer
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -83,10 +112,8 @@
 %%fakesection Listings Setup
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
-\lstset{%language=Matlab,%
-	basicstyle=\tt\scriptsize,
+\lstset{basicstyle=\tt\scriptsize, % small font
 	breaklines=true,%
-	%morekeywords={matlab2tikz},
 	keywordstyle=\color{black},%
 	morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
 	identifierstyle=\color{black},%
@@ -100,107 +127,103 @@
 	mathescape=false,
 }
 
-%
+% ref codeline in text
 \providecommand{\codeline}[1]{{\scriptsize\color{red}#1}}
+% highlight lines (yellow) in listings env (@\Hilight@)
 \newcommand{\Hilight}{\makebox[0pt][l]{\color{yellow}\rule[-1pt]{1\linewidth}{5.5pt}}}
+% highlight lines (pink) in listings env (@\Hilight@)
 \newcommand{\EMPH}{\makebox[0pt][l]{\color{pink}\rule[-1pt]{1\linewidth}{5.5pt}}}
 
-%%fakesubsection ASSEMBLY 
-\lstdefinestyle{ASSEMBLY}{%
+%%fakesubsection ASSEMBLY
+
+% \begin{lstlisting}[style = assembly]
+% foo
+% \end{lstlisting}<++>
+%
+\lstdefinestyle{assembly}{%
 	language={[x86masm]Assembler},%
 	basicstyle=\tt\tiny,%
 	emph=[1]{LDI, ADD, ADC, CLR, SEC,MUL,MULS,MULSU, OUT,
 		.global,.section,.text, .org,rjmp,.equ,.include,.nolist,.list,
 		asr, lpm, lds, rcall, sts,mov, push,pop,sub,RET,brne,dec,.byte,
-		inc,.ascii,call, cpi, breq,jmp,andi,in, or, cbi, sbi,swap, 
+		inc,.ascii,call, cpi, breq,jmp,andi,in, or, cbi, sbi,swap,
 		nop, sbrs},
-	emphstyle=[1]\color{blue}, %some words to emphasise 
+	emphstyle=[1]\color{blue}, %some words to emphasise
 	escapechar=@,
 }
-\newcommand{\ASSEMBLY}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
+
+% in-line assembly (text env)
+\newcommand{\ASS}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
 
 %%fakesubsection C
+% \begin{lstlisting}[style = C]
+% foo
+% \end{lstlisting}<++>
+%
 \lstdefinestyle{C}{%
 	language=C,%
 	basicstyle=\tt\tiny,%
 	keywordstyle=\color{blue}\ttfamily,
 	emph=[1]{uint16\_t,uint8\_t},
-	emphstyle=[1]\color{blue}, %some words to emphasise 
-	emph=[2]{\_delay\_ms,\_delay\_us},	
+	emphstyle=[1]\color{blue}, %some words to emphasise
+	emph=[2]{\_delay\_ms,\_delay\_us},
 	emphstyle=[2]\color{red}, %some words to emphasise
-	escapechar=@, 
+	escapechar=@,
 }
 \newcommand{\C}[1]{\lstinline[style = C,basicstyle=\tt\scriptsize,]|#1|}
 
 %%fakesubsection MATLAB
+% \begin{lstlisting}[style = MATLAB]
+% foo
+% \end{lstlisting}<++>
+%
 \lstdefinestyle{MATLAB}{%
 	language=Matlab,%
 	basicstyle=\tt\tiny,%
 	morekeywords={matlab2tikz},%
 	emph=[1]{for,end,break,if,elseif, else,function},%
-	emphstyle=[1]\color{blue}, %some words to emphasise  
+	emphstyle=[1]\color{blue}, %some words to emphasise
 	emph=[2]{on, off},%
 	emphstyle=[2]\color{mylilas},%
 	escapechar=@,
 }
 \newcommand{\MATLAB}[1]{\lstinline[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
 
-%%fakesubsection PYTHON
-\lstdefinestyle{PYTHON}{%
-	language=Python,%
-	basicstyle=\tt\tiny,%
-	emph=[1]{import, from, as,},
-	emphstyle=[1]\color{blue}, %some words to emphasise 
-	escapechar=@,
-}
-\newcommand{\PYTHON}[1]{\lstinline[style = PYTHON,basicstyle=\tt\scriptsize,]|#1|}
-
-%%fakesubsection PYTHON
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\definecolor{ORG}{RGB}{255, 153, 51}
-\definecolor{Ablue}{RGB}{51, 204, 255}
-\definecolor{Agreen}{RGB}{51, 204, 51}
-
-\lstdefinestyle{ARDUINO}{%
-	keywords={;},% define keywords
-	basicstyle=\tt\tiny,
-	morecomment=[l]{//},%treat // as comments
-	morecomment=[s]{/*}{*/},% define /* ... */ comments
-	emph=[1]{HIGH, OUTPUT, LOW,int,void},% keywords to emphasize
-	emphstyle=[1]\color{Ablue},
-	emph=[2]{digitalWrite,delayMicroseconds,pinMode},% keywords to emphasize
-	emphstyle=[2]\color{ORG},
-	emph=[3]{setup,loop},% keywords to emphasize
-	emphstyle=[3]\color{Agreen},
-	escapechar=@,
-}
-\newcommand{\ARDUINO}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
-
 %%fakesubsection OTHER
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \begin{lstlisting}[style = OTHER]
+% foo
+% \end{lstlisting}<++>
+%
 \lstdefinestyle{OTHER}{%
 	basicstyle=\tt\tiny,
 	escapechar=*,
 }
 \newcommand{\OTHER}[1]{\OTHER[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
 
-\usepackage{lastpage,fancyhdr}			% better looking header
-\pagestyle{fancy}						% FANCY LIKE ME!!!!
-\fancyhead{}							%clear all header fields
-\renewcommand{\headrulewidth}{0pt}		%no line in header area
-\fancyfoot{}							%clear all footer fields
-\fancyfoot[C]{\thepage \space of \pageref{LastPage}}		% page # of #
-\fancyfoot[R]{\smAuthor \space $\rvert$ \Class \space \# \HWNum}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{document} 
+%%fakesubsection PYTHON
+% \begin{lstlisting}[style = PYTHON]
+% foo
+% \end{lstlisting}<++>
+%
+\lstdefinestyle{PYTHON}{%
+	language=Python,%
+	basicstyle=\tt\tiny,%
+	emph=[1]{import, from, as,},
+	emphstyle=[1]\color{blue}, %some words to emphasise
+	escapechar=@,
+}
+\newcommand{\PYTHON}[1]{\lstinline[style = PYTHON,basicstyle=\tt\scriptsize,]|#1|}
+
+\begin{document}
 
 %%fakesection TITLE/HEADER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand {\Class}{CLASS}
 \newcommand {\HWNum}{NUM}
 \newcommand {\Date} {DATE}
-%\newcommand {\Probs}{PROBS}             
+%\newcommand {\Probs}{PROBS}
 \newcommand {\Author}{Jonathan F. Dooley}
 \newcommand {\smAuthor} {JFDooley}
 
@@ -213,28 +236,28 @@
 \end{tabular}
 
 
-\section*{\textsc{Problem 1:}}
+\section*{\sc{Problem 1:}}
 \setcounter{section}{1}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statment
 \begin{center}
 	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-				
+Problem Statment
 	}\end{minipage}}
 \end{center}
 
 \noindent
 
 
-\section*{\textsc{Problem 2:}}
+\section*{\sc{Problem 2:}}
 \setcounter{section}{2}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statment
 \begin{center}
 	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-				
+Problem Statment
 	}\end{minipage}}
 \end{center}
 
@@ -242,14 +265,14 @@
 
 
 
-\section*{\textsc{Problem 3:}}
+\section*{\sc{Problem 3:}}
 \setcounter{section}{3}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statment
 \begin{center}
 	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-
+Problem Statment
 	}\end{minipage}}
 \end{center}
 

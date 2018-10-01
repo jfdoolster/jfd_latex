@@ -1,2 +1,7 @@
-# JFDTex
-Latex Template for your condsideration.
+# Dooley's latex HW template
+My current latex template for your consideration.
+
+
+
+
+
