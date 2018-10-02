@@ -5,9 +5,6 @@
 %%fakesection Commands
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
-
 % trig/math commands w/ automatically adjusting parens
 \providecommand{\SIN}[1]{\ensuremath{\sin{\left(#1\right)}}}
 \providecommand{\COS}[1]{\ensuremath{\cos{\left(#1\right)}}}
@@ -28,12 +25,14 @@
 \providecommand{\TT}[1]{\,\ensuremath{\left[\text{#1}\right]}}
 % non-braketed test env in math env: $\U{SNR}$
 \providecommand{\U}[1]{\ensuremath{\text{#1}}}
-% up arrow under value. used as marker for sequences
+% up arrow under value. used as marker for value in sequence
 \newcommand*{\UUA}[1]{\underset{\uparrow}{#1}}
-%integral limits
+% integral limits (vertical bar)
 \newcommand{\LIMS}{\biggr\rvert}
-% \PT to create partial deriviative symbol
+% $\PT$ to create partial deriviative symbol
 \newcommand{\PT}{\partial}
+% scientific notation
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
 
 % commands to help with flow in math environment
 \newcommand{\GOTO}{\hspace{0.1in} \rightarrow \hspace{0.1in}}
