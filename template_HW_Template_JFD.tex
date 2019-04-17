@@ -2,8 +2,25 @@
 %
 \documentclass[11pt,usenames,dvipsnames,table]{article}
 \usepackage[top =0.8in, left = 0.8in, bottom=0.8in, right=0.8in]{geometry}
-%%fakesection Commands
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Enter HW Info
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand {\Class}{CLASS}
+\newcommand {\HWNum}{NUM}
+\newcommand {\Date} {DATE}
+%\newcommand {\Probs}{PROBS}
+\newcommand {\Author}{Jonathan F. Dooley}
+\newcommand {\smAuthor} {J.F.Dooley}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Dooley Created Commands
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % trig/math commands w/ automatically adjusting parens
 \providecommand{\SIN}[1]{\ensuremath{\sin{\left(#1\right)}}}
@@ -55,25 +72,26 @@
 
 % begin centered table with ease
 \newcommand{\BT}{\begin{center}\begin{tabular}}
-\newcommand{\ET}{\end{tabular}\end{center}}
+		\newcommand{\ET}{\end{tabular}\end{center}}
 
 % create matrix with less keystrokes (math env)
 \newcommand{\BM}{\begin{bmatrix}}
-\newcommand{\EM}{\end{bmatrix}}
+	\newcommand{\EM}{\end{bmatrix}}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%fakesection Packages
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Load Needed Packages
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\usepackage{helvet}
-%\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb, bm, lipsum, braket, mathtools, pdfpages}
 \usepackage{wrapfig, graphicx,subfig}
 \usepackage{cancel}	% allows cancelling in math mode
 \usepackage[font=footnotesize]{caption}
 % Size options: scriptsize, footnotesize, small, normalsize, large, Large, huge, Huge
 \usepackage{xcolor}
+\usepackage{tcolorbox}
 \usepackage{accsupp}
 
 % sinc and si ('trig-intagral'), use capitals for auto parens
@@ -94,25 +112,31 @@
 \hypersetup{
 	colorlinks=true,
 	linkcolor=black,
-	filecolor=black,
+	filecolor=blue,
 	urlcolor=blue,
 	linktocpage=true,
 	citecolor=black,
-	}
-
+	linktoc=all,
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Set Page Apperence
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{lastpage,fancyhdr} % better looking header
 \pagestyle{fancy}              % FANCY LIKE ME!!!!
 \fancyhead{}                   %clear all header fields
 \renewcommand{\headrulewidth}{0pt} %no line in header area
 \fancyfoot{}                   %clear all footer fields
 \fancyfoot[C]{\thepage \space of \pageref{LastPage}} % page # of #
-\fancyfoot[R]{\smAuthor \space $\rvert$ \Class \space \# \HWNum} % footer
+\fancyfoot[R]{\smAuthor} % footer
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%%fakesection Listings Setup
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection lstlistings stuff
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{listings}
 \lstset{basicstyle=\tt\scriptsize, % small font
 	breaklines=true,%
@@ -121,7 +145,7 @@
 	identifierstyle=\color{black},%
 	stringstyle=\color{mylilas},
 	commentstyle=\color{mygreen},%
-	showstringspaces=false,%without this there will be a symbol in the places where there is a space
+	showstringspaces=false,% remove dash from whitespaces
 	numbers=left,%
 	numberstyle=\tiny\color{red}\noncopynumber,% size of the numbers
 	columns = flexible,
@@ -145,12 +169,7 @@
 % highlight lines (pink) in listings env (@\Hilight@)
 \newcommand{\EMPH}{\makebox[0pt][l]{\color{pink}\rule[-1pt]{1\linewidth}{5.5pt}}}
 
-%%fakesubsection ASSEMBLY
-
-% \begin{lstlisting}[style = assembly]
-% foo
-% \end{lstlisting}
-%
+%%%%%%%%%%%%%%%%%%%%%   ASSEMBLY   %%%%%%%%%%%%%%%%%%%%%
 \lstdefinestyle{assembly}{%
 	language={[x86masm]Assembler},%
 	basicstyle=\tt\tiny,%
@@ -166,11 +185,7 @@
 % in-line assembly (text env)
 \newcommand{\ASS}[1]{\lstinline[style = ASSEMBLY,basicstyle=\tt\scriptsize,]|#1|}
 
-%%fakesubsection C
-% \begin{lstlisting}[style = C]
-% foo
-% \end{lstlisting}
-%
+%%%%%%%%%%%%%%%%%%%%%   C code   %%%%%%%%%%%%%%%%%%%%%
 \lstdefinestyle{C}{%
 	language=C,%
 	basicstyle=\tt\tiny,%
@@ -183,11 +198,7 @@
 }
 \newcommand{\C}[1]{\lstinline[style = C,basicstyle=\tt\scriptsize,]|#1|}
 
-%%fakesubsection MATLAB
-% \begin{lstlisting}[style = MATLAB]
-% foo
-% \end{lstlisting}
-%
+%%%%%%%%%%%%%%%%%%%%%   MATLAB   %%%%%%%%%%%%%%%%%%%%%
 \lstdefinestyle{MATLAB}{%
 	language=Matlab,%
 	basicstyle=\tt\tiny,%
@@ -200,24 +211,8 @@
 }
 \newcommand{\MATLAB}[1]{\lstinline[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
 
-%%fakesubsection OTHER
-% \begin{lstlisting}[style = OTHER]
-% foo
-% \end{lstlisting}
-%
-\lstdefinestyle{OTHER}{%
-	basicstyle=\tt\tiny,
-	escapechar=*,
-}
-\newcommand{\OTHER}[1]{\OTHER[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%%fakesubsection PYTHON
-% \begin{lstlisting}[style = PYTHON]
-% foo
-% \end{lstlisting}<++>
-%
+%%%%%%%%%%%%%%%%%%%%%   PYTHON   %%%%%%%%%%%%%%%%%%%%%
 \lstdefinestyle{PYTHON}{%
 	language=Python,%
 	basicstyle=\tt\tiny,%
@@ -227,15 +222,27 @@
 }
 \newcommand{\PYTHON}[1]{\lstinline[style = PYTHON,basicstyle=\tt\scriptsize,]|#1|}
 
+
+%%%%%%%%%%%%%%%%%%%%%   R Code   %%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{Rscript}{%
+	language=R,%
+	keywordstyle=\color{blue},%
+	basicstyle=\tt\tiny,%
+	escapechar=@,
+}
+\newcommand{\R}[1]{\lstinline[style = Rscript,basicstyle=\tt\scriptsize,]|#1|}
+
+
+%%%%%%%%%%%%%%%%%%%%%   OTHER CODE   %%%%%%%%%%%%%%%%%%%%%
+\lstdefinestyle{OTHER}{%
+	basicstyle=\tt\tiny,
+	escapechar=*,
+}
+\newcommand{\OTHER}[1]{\OTHER[style = MATLAB,basicstyle=\tt\scriptsize,]|#1|}
+
 \begin{document}
 %%fakesection TITLE/HEADER
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand {\Class}{CLASS}
-\newcommand {\HWNum}{NUM}
-\newcommand {\Date} {DATE}
-%\newcommand {\Probs}{PROBS}
-\newcommand {\Author}{Jonathan F. Dooley}
-\newcommand {\smAuthor} {JFDooley}
 
 \null\hfill\begin{tabular}{r@{}}
 	\text{\Author}\\
@@ -245,44 +252,58 @@
 	%\text{\Probs}
 \end{tabular}
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Problem 1
 \section*{\sc{Problem 1:}}
 \setcounter{section}{1}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statement
 \begin{center}
-	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-Problem Statement
-	}\end{minipage}}
+	\begin{tcolorbox}[standard jigsaw,opacityback=0,width=0.8\textwidth]
+		{\scriptsize
+			Problem Statement
+	}\end{tcolorbox}
 \end{center}
 
 %%fakesubsection Solution
 \noindent
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Problem 2
 \section*{\sc{Problem 2:}}
 \setcounter{section}{2}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statement
 \begin{center}
-	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-Problem Statement
-	}\end{minipage}}
+	\begin{tcolorbox}[standard jigsaw,opacityback=0,width=0.8\textwidth]
+		{\scriptsize
+			Problem Statement
+	}\end{tcolorbox}
 \end{center}
 
 %%fakesubsection Solution
 \noindent
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%fakesection Problem 3
 \section*{\sc{Problem 3:}}
 \setcounter{section}{3}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %%fakesubsection problem statement
 \begin{center}
-	\fbox{\noindent\begin{minipage}{.8\textwidth}{\scriptsize\noindent
-Problem Statement
-	}\end{minipage}}
+	\begin{tcolorbox}[standard jigsaw,opacityback=0,width=0.8\textwidth]
+		{\scriptsize
+			Problem Statement
+	}\end{tcolorbox}
 \end{center}
 
 %%fakesubsection Solution
