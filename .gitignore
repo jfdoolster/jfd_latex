@@ -1,4 +1,2 @@
-*.gz
-*.out
-*.log
-*.aux
+build/
+*.pdf
