@@ -1,0 +1,37 @@
+\usepackage{listings}
+
+% colors for lstlistings.
+\definecolor{mygreen}{RGB}{28,172,0}
+\definecolor{mylilas}{RGB}{170,55,241}
+
+\lstset{basicstyle=\tt\scriptsize,% small font
+	breaklines=true,%
+	keywordstyle=\color{black},%
+	morekeywords=[2]{1},%
+	keywordstyle=[2]{\color{black}},%
+	identifierstyle=\color{black},%
+	stringstyle=\color{mylilas},%
+	commentstyle=\color{mygreen},%
+	showstringspaces=false,% remove dash from whitespaces
+	numbers=left,%
+	numberstyle=\tiny\color{red}\noncopynumber,% size of the numbers
+	columns = flexible,%
+	numbersep=9pt,% this defines how far the numbers are from the text
+	frame = single,%
+	mathescape=false,%
+	tabsize=2,%
+}
+
+% no copying on numbers fromm lstlisting
+\newcommand{\noncopynumber}[1]{
+	\BeginAccSupp{method=escape,ActualText={}}
+	#1
+	\EndAccSupp{}
+}
+
+% ref codeline in text
+\providecommand{\codeline}[1]{{\scriptsize\color{red}#1}}
+% highlight lines (yellow) in listings env (@\Hilight@)
+\newcommand{\Hilight}{\makebox[0pt][l]{\color{yellow}\rule[-1pt]{1\linewidth}{5.5pt}}}
+% highlight lines (pink) in listings env (@\Hilight@)
+\newcommand{\EMPH}{\makebox[0pt][l]{\color{pink}\rule[-1pt]{1\linewidth}{5.5pt}}}

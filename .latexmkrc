@@ -1,3 +1,6 @@
+
+# https://texdoc.org/serve/latexmk.man1.pdf/0
+
 $aux_dir = 'build';
 $jobname = '%A';
 
