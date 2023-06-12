@@ -10,4 +10,5 @@ build:
 
 clean:
 	latexmk -C
+	@rm -rf build
 
