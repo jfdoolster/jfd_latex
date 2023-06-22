@@ -1,8 +1,0 @@
-\setcounter{chapter}{0}
-
-\addtocounter{chapter}{1}
-\section{Methane and Radiative Forcing}
-\section{Methane Detection Methods}
-\section{UAV System Overview}
-\subsection{Review of Current UAV Systems}
-\subsection{UAS Design}

@@ -1,32 +1,27 @@
 \usepackage{listings}
+\usepackage{textcomp}
+
+% doesnt work 6/15/23
+\usepackage{accsupp}% http://ctan.org/pkg/accsupp
+\renewcommand{\thelstnumber}{% Line number printing mechanism
+  \protect\BeginAccSupp{ActualText={}}\arabic{lstnumber}\protect\EndAccSupp{}%
+}
 
 % colors for lstlistings.
 \definecolor{mygreen}{RGB}{28,172,0}
 \definecolor{mylilas}{RGB}{170,55,241}
 
-\lstset{basicstyle=\tt\scriptsize,% small font
-	breaklines=true,%
-	keywordstyle=\color{black},%
-	morekeywords=[2]{1},%
-	keywordstyle=[2]{\color{black}},%
-	identifierstyle=\color{black},%
+\lstset{basicstyle=\scriptsize\tt,%
+    columns=flexible,%
+	frame = single,
+	%numbers=left,%
+	%numbersep=9pt,%
+	numberstyle=\tiny\color{red},%
 	stringstyle=\color{mylilas},%
 	commentstyle=\color{mygreen},%
-	showstringspaces=false,% remove dash from whitespaces
-	numbers=left,%
-	numberstyle=\tiny\color{red}\noncopynumber,% size of the numbers
-	columns = flexible,%
-	numbersep=9pt,% this defines how far the numbers are from the text
-	frame = single,%
-	mathescape=false,%
-	tabsize=2,%
-}
-
-% no copying on numbers fromm lstlisting
-\newcommand{\noncopynumber}[1]{
-	\BeginAccSupp{method=escape,ActualText={}}
-	#1
-	\EndAccSupp{}
+	keywordstyle=\color{black},%
+	identifierstyle=\color{black},%
+	backgroundcolor=\color{lightgray!20},
 }
 
 % ref codeline in text

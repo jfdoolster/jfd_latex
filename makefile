@@ -1,9 +1,12 @@
-mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
-mkfile_dir := $(realpath $(dir $(mkfile_path)))
+mkfile_dir := $(dir $(realpath $(lastword $(MAKEFILE_LIST))))
 
-.PHONY: all build clean
+.PHONY: all info build clean
 
 all: build
+
+info:
+	$(info mkfile_dir:	$(mkfile_dir))
+	@:
 
 build:
 	latexmk
@@ -11,4 +14,3 @@ build:
 clean:
 	latexmk -C
 	@rm -rf build
-
