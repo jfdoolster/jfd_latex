@@ -25,6 +25,12 @@ latexmk -C
 ```
 
 
+## submodule init
+```sh
+cd jfdtex
+git submodule add git@github.com:jfdoolster/jfdtex_preamble.git ./lib
+```
+
 ## TexLive Installation
 
 Unix:
