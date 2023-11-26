@@ -3,27 +3,27 @@
 \usepackage{xcolor}
 
 % doesnt work 6/15/23
-\usepackage{accsupp}% http://ctan.org/pkg/accsupp
-\renewcommand{\thelstnumber}{% Line number printing mechanism
-  \protect\BeginAccSupp{ActualText={}}\arabic{lstnumber}\protect\EndAccSupp{}%
-}
+%\usepackage{accsupp}% http://ctan.org/pkg/accsupp
+%\renewcommand{\thelstnumber}{% Line number printing mechanism
+%  \protect\BeginAccSupp{ActualText={}}\arabic{lstnumber}\protect\EndAccSupp{}%
+%}
 
 % colors for lstlistings.
 \definecolor{mygreen}{RGB}{28,172,0}
 \definecolor{mylilas}{RGB}{170,55,241}
 
-\lstset{basicstyle=\scriptsize\tt,%
-    columns=flexible,%
-	frame = single,
-	%numbers=left,%
-	%numbersep=9pt,%
-	numberstyle=\tiny\color{red},%
-	stringstyle=\color{mylilas},%
-	commentstyle=\color{mygreen},%
-	keywordstyle=\color{black},%
-	identifierstyle=\color{black},%
-	backgroundcolor=\color{lightgray!20},
-}
+%\lstset{basicstyle=\scriptsize\tt,%
+%    columns=flexible,%
+%	frame = single,
+%	%numbers=left,%
+%	%numbersep=9pt,%
+%	numberstyle=\tiny\color{red},%
+%	stringstyle=\color{mylilas},%
+%	commentstyle=\color{mygreen},%
+%	keywordstyle=\color{black},%
+%	identifierstyle=\color{black},%
+%	backgroundcolor=\color{lightgray!20},
+%}
 
 % ref codeline in text
 \providecommand{\codeline}[1]{{\scriptsize\color{red}#1}}
