@@ -2,20 +2,19 @@
 
 \usepackage{preamble/pagesetup}
 \input{preamble/preamble}
+\usepackage[sort&compress]{natbib}
 
 \author{J. F. Dooley}
-\title{\LaTeX\,\,template using \texttt{latexmk}}
-
-\usepackage[sort&compress]{natbib}
+\title{\LaTeX{} template using \texttt{latexmk}}
 
 \begin{document}
 
 \maketitle
 
-\include*{content/01_section_one}
-
+\section{Hello World!}
+\lipsum[1-2]~\cite{LaTeX2020,Kerrisk2010}
 
 \bibliographystyle{unsrt}
-\bibliography{bib/refs}
+\bibliography{refs}
 
 \end{document}
