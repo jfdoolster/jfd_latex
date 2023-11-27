@@ -1,4 +1,28 @@
-\usepackage{amsmath, amssymb, braket, mathtools, bm, braket, xspace}
+\usepackage{amsmath, xspace, bm}
+
+% units and math
+\providecommand{\Units}[1]{\,\text{#1}\xspace}
+\providecommand{\Degrees}[1]{\ensuremath{{#1}^{\circ}}\xspace}
+\providecommand{\Pow}[1]{\text{\textsuperscript{#1}}}
+\providecommand{\Sim}{\text{\raisebox{0.5ex}{\texttildelow}}}
+\newcommand{\Micro}{\ensuremath{\mu}}
+
+% compound shortcuts
+\providecommand{\Methane}{\text{CH\textsubscript{4}}\xspace}
+\providecommand{\Ethane}{\text{C\textsubscript{2}H\textsubscript{6}}\xspace}
+\providecommand{\CarbonDioxide}{\text{CO\textsubscript{2}}\xspace}
+\providecommand{\ONG}{\text{O\&NG}\xspace}
+\providecommand{\Placeholder}{\text{\textbf{XX}}\xspace}
+
+% latin
+\providecommand{\EtAl}{\latin{et\,al.}\xspace}
+\providecommand{\APriori}{\latin{a priori}\xspace}
+
+% scientific notation
+\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
+\providecommand{\E}[1]{\ensuremath{\text{{\scriptsize\,E\,}{#1}}}}
+
+\usepackage{amssymb, braket, mathtools, braket}
 
 % trig/math commands w/ automatically adjusting parens
 \providecommand{\SIN}[1]{\ensuremath{\sin{\left(#1\right)}}}
@@ -18,27 +42,10 @@
 \providecommand{\SINC}[1]{\ensuremath{\sinc{\left(#1\right)}}}
 \providecommand{\SI}[1]{\ensuremath{\si{\left(#1\right)}}}
 
-% scientific notation
-\providecommand{\e}[1]{\ensuremath{\times 10^{#1}}}
-\providecommand{\E}[1]{\ensuremath{\text{{\scriptsize\,E\,}{#1}}}}
-
-% integral limits (vertical bar)
-\newcommand{\LIMS}{\biggr\rvert}
-
-% partial deriviative symbol
-\newcommand{\PT}{\partial}
-
-\newcommand{\eps}{\epsilon_{0}} % permitivity of free space
-\newcommand{\emf}{\mathcal{E}}  % EMF Symbol
-
-\newcommand{\micro}{\ensuremath{\mu}}
-
-\newcommand{\Methane}{\text{CH\textsubscript{4}}\xspace}
-\newcommand{\Ethane}{\text{C\textsubscript{2}H\textsubscript{6}}\xspace}
-\newcommand{\CarbonDioxide}{\text{CO\textsubscript{2}}\xspace}
-
-\providecommand{\Units}[1]{\,\text{#1}\xspace}
-\providecommand{\Degrees}[1]{\ensuremath{{#1}^{\circ}}\xspace}
+\newcommand{\LIMS}{\biggr\rvert} % integral limits (vertical bar)
+\newcommand{\PT}{\partial} % partial deriviative symbol
+\newcommand{\EPS}{\epsilon_{0}} % permitivity of free space
+\newcommand{\EMF}{\mathcal{E}}  % EMF Symbol
 
 % up arrow under value. used as marker for value in sequence
 \newcommand*{\UUA}[1]{\underset{\uparrow}{#1}}
@@ -55,13 +62,9 @@
 \newcommand{\GOTO}[1]{\hspace{#1}\rightarrow\hspace{#1}}
 \newcommand{\COMMA}[1]{,\,\hspace{#1}}
 
-\newcommand{\etal}{\text{et\,al.} }
-
 % single and double quotes with ease
 \newcommand{\quotes}[1]{``#1''}  %%% \quotes{}
 \newcommand{\str}[1]{`#1'}  %%% \str{}
-
-\newcommand{\Sim}{\text{\raisebox{0.5ex}{\texttildelow}}}
 
 % create problem text boxes with less keystrokes
 \newcommand{\probbox}[1]{\begin{center}%
