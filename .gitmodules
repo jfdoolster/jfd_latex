@@ -1,0 +1,5 @@
+[submodule "preamble"]
+	path = preamble
+	url = git@github.com:jfdoolster/jfd_latex.git
+	branch = main
+	update = rebase
