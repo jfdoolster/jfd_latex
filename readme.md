@@ -1,8 +1,13 @@
 # latex template
 
-## Usage
+## installation
 
-New files should be added to the `content/` directory and linked to the main document using the `\input{}` command
+```bash
+git clone --recurse-submodules -j8 https://github.com/jfdoolster/jfd_latex.git project_name
+cd project_name
+git remote set-url origin <NEW_REMOTE_URL> # optional, for version control of document
+```
+
 
 ### Build
 
@@ -24,14 +29,16 @@ or
 latexmk -C
 ```
 
-
-## submodule init
+## submodule initialization
 ```sh
-cd jfdtex
-git submodule add git@github.com:jfdoolster/jfdtex_preamble.git ./lib
+git submodule init
+git submodule add git@github.com:jfdoolster/jfdtex_preamble.git preamble
+git submodule update --recursive
 ```
 
 ## TexLive Installation
+
+[Full TexLive Guide](https://tug.org/texlive/doc/texlive-en/texlive-en.html)
 
 Unix:
 ```sh
@@ -45,7 +52,6 @@ sudo mkdir -m777 /usr/local/texlive # rwx permissions for all users
 perl ./install-tl
 ```
 
-[Full TexLive Guide](https://tug.org/texlive/doc/texlive-en/texlive-en.html)
 
 
 
