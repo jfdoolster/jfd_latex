@@ -9,7 +9,7 @@ info:
 	@:
 
 build:
-	latexmk
+	latexmk main.tex
 
 clean:
 	latexmk -C
