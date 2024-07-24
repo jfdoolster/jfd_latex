@@ -1,0 +1,27 @@
+
+\usepackage{amsmath, amssymb, bm}
+\usepackage{lipsum}
+\usepackage[modulo]{lineno}
+
+\providecommand{\Methane}{\text{$\mathrm{CH_{4}}$}}
+\providecommand{\Ethane}{\text{$\mathrm{C_{2}H_{6}}$}}
+\providecommand{\CarbonDioxide}{\text{$\mathrm{CO_{2}}$}}
+\providecommand{\Sim}{\text{\raisebox{0.5ex}{\texttildelow}}}
+\providecommand{\Placeholder}{\text{\textbf{XX}}}
+
+% from copernicus documentclass
+\DeclareRobustCommand*\unit[1]
+{\ensuremath{%
+{\thinmuskip3mu\relax
+\def\mu{\text{\textmu}}\def~{\,}%
+\ifx\f@series\testbx\mathbf{#1}\else\mathrm{#1}\fi}}}
+
+\usepackage{enumitem}
+\def\threedigits#1{%
+\ifnum#1<100 0\fi
+\ifnum#1<10 0\fi
+\number#1}
+
+\def\LN#1{
+    L\threedigits{#1}
+}

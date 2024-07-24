@@ -1,0 +1,22 @@
+
+\usepackage[top=1in, left=1in, bottom=1in, right=1in]{geometry}
+\usepackage{titling}
+\usepackage{etoolbox}
+
+\makeatletter\def\@maketitle{%
+    \begin{center}\LARGE%
+        \normalfont\bfseries\@title%
+    \par\end{center}%\vskip 0.5em}
+    \ifdefempty{\theauthor}{}{%
+        \begin{tabular}[t]{c}%
+            \@author%
+        \end{tabular}\par\end{center}%
+    }%
+    \ifdefempty{\thedate}{}{%
+        \begin{center}\large%
+            \@date%
+        \par\end{center}%
+    }%
+}\makeatother
+
+
