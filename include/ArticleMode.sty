@@ -6,11 +6,13 @@
 \makeatletter\def\@maketitle{%
     \begin{center}\LARGE%
         \normalfont\bfseries\@title%
-    \par\end{center}%\vskip 0.5em}
+    \par\end{center}%\vskip 0.0em
     \ifdefempty{\theauthor}{}{%
+        \begin{center}\large%
         \begin{tabular}[t]{c}%
             \@author%
-        \end{tabular}\par\end{center}%
+        \end{tabular}
+        \par\end{center}%
     }%
     \ifdefempty{\thedate}{}{%
         \begin{center}\large%
